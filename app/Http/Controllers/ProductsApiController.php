@@ -11,6 +11,7 @@ use App\Models\Category_Product;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
 use function Ramsey\Uuid\v1;
@@ -45,8 +46,8 @@ class ProductsApiController extends Controller
         foreach ($Products as $Product) {
             $data_category = $Product->categories;
             $img = $Product->image;
-            $image = file_get_contents(storage_path("app\apiDocs\\" . $img));
-            $Product->image =  base64_encode($image);
+            $image = env('APP_URL') . Storage::url("app/apiDocs/" . $img);
+            $Product->image =  $image;
             $Product->categories;
         }
         return response()->json([
