@@ -375,8 +375,8 @@ class ProductsApiController extends Controller
         foreach ($Products as $Product) {
             $data_category = $Product->categories;
             $img = $Product->image;
-            $image = file_get_contents(storage_path("app\apiDocs\\" . $img));
-            $Product->image =  base64_encode($image);
+            $image = env('APP_URL') . Storage::url("app/apiDocs/" . $img);
+            $Product->image =  $image;
         }
         return response()->json([
             'Product' => $Products
@@ -417,12 +417,11 @@ class ProductsApiController extends Controller
         // }
         if ($product->visible == 1) {
             $img = $product->image;
-            $image = file_get_contents(storage_path("app\apiDocs\\" . $img));
             //Call categories
             $product->categories;
             $img = $product->image;
-            $image = file_get_contents(storage_path("app\apiDocs\\" . $img));
-            $product->image =  base64_encode($image);
+            $image = env('APP_URL') . Storage::url("app/apiDocs/" . $img);
+            $product->image =  $image;
             return response()->json([
                 'product' => $product
 

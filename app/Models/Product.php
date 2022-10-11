@@ -9,12 +9,11 @@ class Product extends Model
 {
     protected $connection = 'mongodb';
     protected $collection = "products";
-    protected $primarykey = 'id';
-    protected $fillable = ['id','product_name','price','image','qty','description','visible','created_at','updated_at'];
+    protected $fillable = ['_id','product_name','price','image','qty','description','visible','created_at','updated_at'];
     public $timestamps = true;
     
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class,null,'_id','product_id');
     }
 }

@@ -13,7 +13,6 @@ class Category_Product extends Model
     protected $fillable = ['product_id', 'category_id','created_at','updated_at'];
     public $timestamps = true;
     public $incrementing = false;
-    use HasFactory;
     // public function categories()
     // {
     //     return $this->hasOne(Category::class);

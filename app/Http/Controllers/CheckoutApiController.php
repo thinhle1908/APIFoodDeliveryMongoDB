@@ -132,7 +132,7 @@ class CheckoutApiController extends Controller
             //Create order details
             foreach ($cart as $value) {
                 $order_details = new OrderDetail();
-                $order_details->order_id = $order->id;
+                $order_details->order_id = $order->getKey();
                 $order_details->product_id = $value['product']['id'];
                 $order_details->qty = $value['product']['quanlity'];
                 $order_details->price = $value['product']['price'];

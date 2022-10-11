@@ -11,9 +11,9 @@ class Category extends Model
     protected $collection = "categories";
     protected $fillable = ['id', 'category_name','created_at','updated_at'];
     public $timestamps = true;
-    use HasFactory;
+
     public function products()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class,'category_product','category_id');
     }
 }
